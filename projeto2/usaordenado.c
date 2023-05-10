@@ -48,11 +48,29 @@ int main(){
         inserir_lse(estacionados,novo);
         scanf("%s", placa);
     }
+    int ocupacao = tamanho_lse(estacionados);
+    int qtd_vagas;
+    do{
 
-    imprimir_carro(menor_ordenado(estacionados));
-    imprimir_carro(maior_ordenado(estacionados));
-    remover_lse(estacionados,"p4");
+        qtd_vagas = tamanho_lse(estacionados) - ocupacao;
+        ocupacao--;
+
+        printf("Carro maior da lista:\n");
+        t_carro* maior = maior_ordenado(estacionados);
+        imprimir_carro(maior);
+
+        printf("Carro menor da lista:\n");
+        t_carro* menor = menor_ordenado(estacionados);
+        imprimir_carro(menor);
+
+        printf("Digite a placa do carro que quer retirar:\n");
+        scanf("%s",placa);
+        t_carro* saindo = remover_lse(estacionados,placa);
+
+    }while(qtd_vagas!=tamanho_lse(estacionados));
+
     estatistica_lordenado(estacionados);
+
     
     return 0;
 }
