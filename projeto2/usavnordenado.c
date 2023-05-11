@@ -1,7 +1,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
-#include "lnordenado.h"
+#include "vnordenado.h"
 
 typedef struct carro{
     char placa[9];
@@ -38,7 +38,7 @@ void imprimir_carro(void* cc){
 
 int main(int argc, char const *argv[])
 {
-    t_lse* estacionados = criar_lse(imprimir_carro, compararCarro);
+    t_lse* estacionados = criar_vnordenado(imprimir_carro, compararCarro);
 
     char placa[9]="placa";
     int hora, min;
@@ -50,31 +50,31 @@ int main(int argc, char const *argv[])
 
         t_carro* novo = criar_carro(placa, hora, min);
         
-        inserir_inicio_lse(estacionados, novo);
+        inserir_vnordenado(estacionados, novo);
         scanf("%s", placa);
     }
-    int ocupacao = tamanho_lse(estacionados);
+    int ocupacao = tamanho_vnordenado(estacionados);
 
     int qtd_vagas;
     do{
 
-        qtd_vagas = tamanho_lse(estacionados) - ocupacao;
+        qtd_vagas = tamanho_vnordenado(estacionados) - ocupacao;
         ocupacao--;
 
         printf("Carro maior da lista:\n");
-        t_carro* maior = maior_lse(estacionados);
+        t_carro* maior = maior_vnordenado(estacionados);
         imprimir_carro(maior);
 
         printf("Carro menor da lista:\n");
-        t_carro* menor = menor_lse(estacionados);
+        t_carro* menor = menor_vnordenado(estacionados);
         imprimir_carro(menor);
 
         printf("Digite a placa do carro que quer retirar:\n");
         scanf("%s",placa);
-        t_carro* saindo = remover_lse(estacionados,placa);
+        t_carro* saindo = remover_vnordenado(estacionados,placa);
 
-    }while(qtd_vagas!=tamanho_lse(estacionados));
+    }while(qtd_vagas!=tamanho_vnordenado(estacionados));
 
-    estatistica_lnordenado(estacionados);
+    estatistica_vnordenado(estacionados);
     return 0;
 }

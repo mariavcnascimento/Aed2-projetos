@@ -28,7 +28,7 @@ struct lse{
     int nro_cmp_rem;
 };
 
-t_lse* criar_lse(t_imprimir_lse impressora, t_comparar_lse comparar){
+t_lse* criar_vordenado(t_imprimir_lse impressora, t_comparar_lse comparar){
      t_lse* nova;
      
     nova  = malloc(sizeof(t_lse));
@@ -43,12 +43,18 @@ t_lse* criar_lse(t_imprimir_lse impressora, t_comparar_lse comparar){
     return nova;
 }
 
-void inserir_lse(t_lse* lse, void* nova_carga){
+void inserir_vordenado(t_lse* lse, void* nova_carga){
     t_elemento_lse* cam = lse->inicio;
     t_elemento_lse* ant=NULL;
 
+    if(lse->tamanho == 0){
+        lse->nro_cmp_pri;
+    }else{
+        lse->nro_cmp_pri++;
+    }
+    //lse->nro_cmp_pri++;
     lse->tamanho++;
-    t_elemento_lse* novo = criar_elemento_lseO(nova_carga);
+    t_elemento_lse* novo = criar_elemento_lse(nova_carga);
     if (lse->inicio == NULL){
        lse->inicio = novo;
     }else{
@@ -70,10 +76,13 @@ void inserir_lse(t_lse* lse, void* nova_carga){
 }
 
 
-void* remover_lse(t_lse* lse, void* chave){
+void* remover_vordenado(t_lse* lse, void* chave){
     t_elemento_lse* cam = lse->inicio;
     t_elemento_lse* ant = NULL;
     
+    lse->nro_cmp_pri++;
+    
+
     while( (cam!=NULL) && (lse->comparar(cam->cargautil , chave)!=0)){
         ant = cam;
         cam = cam->prox;
@@ -115,7 +124,11 @@ void* maior_vordenado(t_lse* lse){
     }
 }
 
+int tamanho_vordenado(t_lse* l){
+    return l->tamanho;
+}
+
 void estatistica_vordenado(t_lse* lse){
-    printf("No. de comparacoes nas insercoes: %d\nNo. de comparacoes nas remocoes: %d\nNo. de comparacoes no acesso ao primeiro elemento: %d\n", lse->nro_cmp_ins,lse->nro_cmp_rem,lse->nro_cmp_pri);
+    printf("nro comparacoes insercao:  %d\nnro comparações remocao: %d\nnro comparacoes primeiro: %d\n", lse->nro_cmp_ins,lse->nro_cmp_rem,lse->nro_cmp_pri);
 }
 

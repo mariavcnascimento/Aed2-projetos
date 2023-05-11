@@ -1,7 +1,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
-#include "filacomprioridade.h"
+#include "heap.h"
 
 typedef struct carro{
     char placa[9];
@@ -37,7 +37,7 @@ void imprimir_carro(t_carro* c){
 
 int main(int argc, char const *argv[])
 {
-    t_fila_cp* estacionados = criar_fila_cp(-1, compararCarro);
+    t_heap* estacionados = criar_heap(-1, compararCarro);
 
     char placa[9]="placa";
     int hora, min;
@@ -49,24 +49,25 @@ int main(int argc, char const *argv[])
 
         t_carro* novo = criar_carro(placa, hora, min);
         
-        enfileirarCP(estacionados, novo);
+        inserir_heap(estacionados, novo);
         scanf("%s", placa);
     }
 
     int qtd_vagas;
     do{
-        t_carro* saindo = desenfileirarCP(estacionados);
+        t_carro* saindo = remover_heap(estacionados);
+        t_carro* maior = raiz_heap(estacionados);
     
         imprimir_carro(saindo);
-        printf("Ocupacao: %d\n", ocupacao_FCP(estacionados));
+        printf("Ocupacao: %d\n", ocupacao_heap(estacionados));
         
-        qtd_vagas = (tamanho_FCP(estacionados)-ocupacao_FCP(estacionados));
+        qtd_vagas = (tamanho_heap(estacionados)-ocupacao_heap(estacionados));
 
         printf("Quantas vagas?: %d\n",qtd_vagas);
 
-    }while(qtd_vagas!=tamanho_FCP(estacionados));
+    }while(qtd_vagas!=tamanho_heap(estacionados));
 
-    estatistica_FCP(estacionados);
+    estatistica_heap(estacionados);
 
     return 0;
 }

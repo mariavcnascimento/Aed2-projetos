@@ -39,6 +39,7 @@ static void desce_no_heap(t_heap* h, int k){
     }
 
     h->nro_cmp_rem += 2;
+    h->nro_cmp_pri++;
 }
 
 static void sobe_no_heap(t_heap* h, int k){
@@ -46,6 +47,7 @@ static void sobe_no_heap(t_heap* h, int k){
     int kancestral= (k-1)/2;
 
     h->nro_cmp_ins++;
+    h->nro_cmp_pri++;
     if ((kancestral>=0)&&(h->comparar(h->elem[kancestral],h->elem[k])<0)){
         trocar(h->elem, k, kancestral);
         sobe_no_heap(h, kancestral);
@@ -101,7 +103,7 @@ void* remover_heap(t_heap* h){
 }
 
 void* raiz_heap(t_heap* h){
-    h->nro_cmp_pri++;
+    //h->nro_cmp_pri++;
     return (h->ocupacao==0?NULL:h->elem[0]);
 }
 
@@ -129,5 +131,5 @@ int tamanho_heap(t_heap* h){
 }
 
 void estatistica_heap(t_heap* h){
-    printf("No. de comparacoes nas insercoes: %d\nNo. de comparacoes nas remocoes: %d\nNo. de comparacoes no acesso ao primeiro elemento: %d\n", h->nro_cmp_ins,h->nro_cmp_rem,h->nro_cmp_pri);
+    printf("nro comparacoes insercao:  %d\nnro comparações remocao: %d\nnro comparacoes primeiro: %d\n", h->nro_cmp_ins,h->nro_cmp_rem,h->nro_cmp_pri);
 }

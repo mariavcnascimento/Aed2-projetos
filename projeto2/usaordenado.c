@@ -33,7 +33,7 @@ void imprimir_carro(void* ca){
 
 int main(){
 
-    t_lse* estacionados = criar_lse(imprimir_carro, compararCarro);
+    t_lse* estacionados = criar_vordenado(imprimir_carro, compararCarro);
     char placa[9]="placa";
     int hora, min;
     
@@ -44,14 +44,14 @@ int main(){
 
         t_carro* novo = criar_carro(placa, hora, min);
         
-        inserir_lse(estacionados,novo);
+        inserir_vordenado(estacionados,novo);
         scanf("%s", placa);
     }
-    int ocupacao = tamanho_lse(estacionados);
+    int ocupacao = tamanho_vordenado(estacionados);
     int qtd_vagas;
     do{
 
-        qtd_vagas = tamanho_lse(estacionados) - ocupacao;
+        qtd_vagas = tamanho_vordenado(estacionados) - ocupacao;
         ocupacao--;
 
         printf("Carro maior da lista:\n");
@@ -64,9 +64,9 @@ int main(){
 
         printf("Digite a placa do carro que quer retirar:\n");
         scanf("%s",placa);
-        t_carro* saindo = remover_lse(estacionados,placa);
+        t_carro* saindo = remover_vordenado(estacionados,placa);
 
-    }while(qtd_vagas!=tamanho_lse(estacionados));
+    }while(qtd_vagas!=tamanho_vordenado(estacionados));
 
     estatistica_vordenado(estacionados);
 

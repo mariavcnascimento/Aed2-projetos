@@ -101,9 +101,14 @@ int main(){
                 estatistica_lnordenado(estacionadosNo);
                 flag = continuar();
                 break;
-            case 3:
-                estacionadosH = criar_fila_cp(4,compararCarro);
+            case 3:;
+                int tam = 4;
+                estacionadosH = criar_fila_cp(tam,compararCarro);
                 inserir_estrutura(estacionadosH,op);
+                do{
+                    t_carro* saindo = desenfileirarCP(estacionadosH);
+                    tam--;
+                }while(tam>=0);
                 estatistica_FCP(estacionadosH);
                 flag = continuar();
                 break;
