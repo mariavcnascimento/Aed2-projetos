@@ -1,7 +1,7 @@
 #include "stdio.h"
 #include "string.h"
 #include "stdlib.h"
-#include "lordenado.h"
+#include "vordenado.h"
 
 typedef struct carro{
     char placa[9];
@@ -44,7 +44,6 @@ int main(){
 
         t_carro* novo = criar_carro(placa, hora, min);
         
-        //inserir_final_lse(estacionados, novo);
         inserir_lse(estacionados,novo);
         scanf("%s", placa);
     }
@@ -56,11 +55,11 @@ int main(){
         ocupacao--;
 
         printf("Carro maior da lista:\n");
-        t_carro* maior = maior_ordenado(estacionados);
+        t_carro* maior = maior_vordenado(estacionados);
         imprimir_carro(maior);
 
         printf("Carro menor da lista:\n");
-        t_carro* menor = menor_ordenado(estacionados);
+        t_carro* menor = menor_vordenado(estacionados);
         imprimir_carro(menor);
 
         printf("Digite a placa do carro que quer retirar:\n");
@@ -69,7 +68,7 @@ int main(){
 
     }while(qtd_vagas!=tamanho_lse(estacionados));
 
-    estatistica_lordenado(estacionados);
+    estatistica_vordenado(estacionados);
 
     
     return 0;
