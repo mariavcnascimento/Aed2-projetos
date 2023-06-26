@@ -1,5 +1,5 @@
 Base dados 27 - 20 - 25 - 17 - 15 - 11 - 10
-QUANTIDADES ESPERADAS 
+QUANTIDADES ESPERADAS - ÁRVORE AVL
 
 rot Inserções = 5
 rot Remocoes = 1
